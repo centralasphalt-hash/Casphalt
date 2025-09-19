@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Calculator | Central Asphalt Sealcoating</title>
+  <meta name="description" content="Hidden calculator for quick pavement estimates." />
+  <!-- Keep hidden -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ---- Page-specific styles (uses your design tokens) ---- */
+
+    /* Tabs */
+    .calc-wrap { padding: 32px 0; }
+    .calc-tabs {
+      display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+      margin: 0 auto 14px;
+    }
+    .calc-tab {
+      border:2px solid var(--border);
+      background:#fff;
+      color:var(--brand-blue);
+      padding:10px 16px;
+      border-radius:12px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+      transition:transform .06s ease, background .15s ease, border-color .15s ease, opacity .12s ease;
+    }
+    .calc-tab:hover { opacity:.96; }
+    .calc-tab[aria-selected="true"] {
+      background: var(--accent);
+      color:#111;
+      border-color: transparent;
+    }
+
+    /* Panels: one visible at a time */
+    .calc-panel { max-width: 880px; margin: 0 auto; }
+    .calc-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .calc-card h3 { margin: 0 0 8px; color: #111827; }
+    .calc-help { color: var(--muted); margin: 6px 0 14px; }
+    .calc-row { display:grid; grid-template-columns: repeat(12,1fr); gap:12px; }
+    .calc-col-6 { grid-column: span 6; }
+    .calc-col-12 { grid-column: span 12; }
+    .result {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      color: var(--brand-blue);
+    }
+    .fine-print { color: var(--muted); font-size: .92rem; margin-top: 10px; }
+
+    /* Hide non-active panels */
+    [hidden] { display:none !important; }
+
+    /* Regular (four-function) calculator */
+    .basic-wrap { display:grid; gap:12px; }
+    .basic-display {
+      width:100%;
+      padding:14px 12px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#fff;
+      font-size:1.6rem;
+      text-align:right;
+      letter-spacing:.5px;
+    }
+    .keypad {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:10px;
+    }
+    .keypad button {
+      padding:14px 0;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:#fff;
+      color:var(--ink);
+      font-weight:800;
+      font-size:1.05rem;
+      box-shadow:var(--shadow);
+      cursor:pointer;
+      transition:transform .06s ease, opacity .12s ease;
+    }
+    .keypad button:active { transform: translateY(1px); }
+    .keypad .op { background:var(--bg-alt); }
+    .keypad .eq { background: var(--accent); color:#111; }
+    .keypad .wide { grid-column: span 2; }
+
+    @media (max-width: 900px) {
+      .calc-col-6 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header (logo clickable to Home) -->
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <a href="index.html#home" aria-label="Go to Home" style="display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;">
+      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="72" height="72" style="border-radius:8px;object-fit:contain;" />
+      <h1 style="margin:0;">Central Asphalt Sealcoating</h1>
+    </a>
+
+    <div class="header-contact" style="text-align:center;">
+      <p style="margin:0;font-weight:600;">
+        <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+          target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">
+          203 E Palmetto Ave, Longwood, FL 32750
+        </a>
+      </p>
+      <p style="margin:0;">
+        <a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a>
+      </p>
+    </div>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" role="banner" aria-label="Calculator"
+         style="--hero-image: url('assets/hero-lot.png');">
+  <div class="container">
+    <p class="eyebrow">Tools</p>
+    <h1>Project Calculator</h1>
+    <p>Fast ballpark numbers for planning. For a precise estimate, <a class="button" href="contact.html" style="display:inline-block;margin-top:8px;">Request a Quote</a></p>
+  </div>
+</section>
+
+<!-- Tabs + Panels (one visible at a time) -->
+<section class="calc-wrap" aria-labelledby="calc-title">
+  <div class="container">
+    <h2 id="calc-title" style="text-align:center">Quick Estimates</h2>
+
+    <!-- Tabs -->
+    <div class="calc-tabs" role="tablist" aria-label="Calculator type">
+      <button class="calc-tab" role="tab" id="tab-ton" aria-controls="panel-ton" aria-selected="true">Asphalt Tonnage</button>
+      <button class="calc-tab" role="tab" id="tab-seal" aria-controls="panel-seal" aria-selected="false" tabindex="-1">Sealcoat Material</button>
+      <button class="calc-tab" role="tab" id="tab-basic" aria-controls="panel-basic" aria-selected="false" tabindex="-1">Regular Calculator</button>
+    </div>
+
+    <!-- Panel: Tonnage -->
+    <div class="calc-panel" id="panel-ton" role="tabpanel" aria-labelledby="tab-ton">
+      <article class="calc-card" aria-labelledby="tonnage-title">
+        <h3 id="tonnage-title">Asphalt Paving — Tonnage</h3>
+        <p class="calc-help">Enter dimensions and thickness. Density is adjustable; 2.0 tons/yd³ is a common planning value.</p>
+
+        <form id="tonForm">
+          <div class="calc-row">
+            <div class="calc-col-6">
+              <label for="lenFt">Length (ft)</label>
+              <input id="lenFt" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 250" />
+            </div>
+            <div class="calc-col-6">
+              <label for="widFt">Width (ft)</label>
+              <input id="widFt" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 60" />
+            </div>
+            <div class="calc-col-6">
+              <label for="thIn">Thickness (in)</label>
+              <input id="thIn" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 2" />
+            </div>
+            <div class="calc-col-6">
+              <label for="density">Density (tons / yd³)</label>
+              <input id="density" type="number" inputmode="decimal" min="1.7" step=".01" value="2.0" />
+            </div>
+            <div class="calc-col-12">
+              <div class="result" id="tonResult">Tons: — | Approx. 20-ton loads: —</div>
+            </div>
+          </div>
+          <div class="actions" style="margin-top:10px;">
+            <button class="button" type="button" id="tonClear">Clear</button>
+          </div>
+          <p class="fine-print">Calc: cubic yards = (L × W × T_in) / 324. Tons = cubic yards × density.</p>
+        </form>
+      </article>
+    </div>
+
+    <!-- Panel: Sealcoat -->
+    <div class="calc-panel" id="panel-seal" role="tabpanel" aria-labelledby="tab-seal" hidden>
+      <article class="calc-card" aria-labelledby="seal-title">
+        <h3 id="seal-title">Sealcoating — Material</h3>
+        <p class="calc-help">Enter length & width (or total area). Adjust coats and coverage to your spec.</p>
+
+        <form id="sealForm">
+          <div class="calc-row">
+            <div class="calc-col-6">
+              <label for="sealLen">Length (ft)</label>
+              <input id="sealLen" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 250" />
+            </div>
+            <div class="calc-col-6">
+              <label for="sealWid">Width (ft)</label>
+              <input id="sealWid" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g., 60" />
+            </div>
+            <div class="calc-col-6">
+              <label for="coats">Coats</label>
+              <input id="coats" type="number" min="1" step="1" value="2" />
+            </div>
+            <div class="calc-col-6">
+              <label for="coverage">Coverage (ft²/gal, per coat)</label>
+              <input id="coverage" type="number" min="1" step="1" value="80" />
+            </div>
+            <div class="calc-col-6">
+              <label for="waste">Waste/overlap (%)</label>
+              <input id="waste" type="number" min="0" step="1" value="10" />
+            </div>
+            <div class="calc-col-6">
+              <label for="area">Or Total Area (ft²)</label>
+              <input id="area" type="number" inputmode="decimal" min="0" step="any" placeholder="Overrides L×W if filled" />
+            </div>
+            <div class="calc-col-12">
+              <div class="result" id="sealResult">Gallons: — | 55-gal drums: —</div>
+            </div>
+          </div>
+          <div class="actions" style="margin-top:10px;">
+            <button class="button" type="button" id="sealClear">Clear</button>
+          </div>
+          <p class="fine-print">Calc: gallons = (area × coats ÷ coverage) × (1 + waste%).</p>
+        </form>
+      </article>
+    </div>
+
+    <!-- Panel: Regular -->
+    <div class="calc-panel" id="panel-basic" role="tabpanel" aria-labelledby="tab-basic" hidden>
+      <article class="calc-card" aria-labelledby="basic-title">
+        <h3 id="basic-title">Regular Calculator</h3>
+        <p class="calc-help">Tap the keypad or use your keyboard (0–9, + − × ÷, ., Enter, Backspace, Esc).</p>
+
+        <div class="basic-wrap" id="basicCalc" role="group" aria-label="Standard calculator">
+          <input class="basic-display" id="basicDisplay" type="text" value="0" inputmode="none" aria-label="Calculator display" readonly />
+          <div class="keypad" aria-label="Calculator keypad">
+            <button type="button" data-act="ac"   class="op">AC</button>
+            <button type="button" data-act="c"    class="op">C</button>
+            <button type="button" data-op="divide" class="op">÷</button>
+            <button type="button" data-op="multiply" class="op">×</button>
+
+            <button type="button" data-num="7">7</button>
+            <button type="button" data-num="8">8</button>
+            <button type="button" data-num="9">9</button>
+            <button type="button" data-op="subtract" class="op">−</button>
+
+            <button type="button" data-num="4">4</button>
+            <button type="button" data-num="5">5</button>
+            <button type="button" data-num="6">6</button>
+            <button type="button" data-op="add" class="op">+</button>
+
+            <button type="button" data-num="1">1</button>
+            <button type="button" data-num="2">2</button>
+            <button type="button" data-num="3">3</button>
+            <button type="button" data-act="equals" class="eq">=</button>
+
+            <button type="button" data-num="0" class="wide">0</button>
+            <button type="button" data-act="dot">.</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer role="contentinfo">
+  <div class="container footer-grid-3">
+    <a class="footer-logo" href="index.html#home" aria-label="Go to Home">
+      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="64" height="64" />
+    </a>
+
+    <div class="footer-contact-wrap">
+      <ul class="footer-contact">
+        <li>
+          <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+             target="_blank" rel="noopener">
+            203 E Palmetto Ave, Longwood, FL 32750
+          </a>
+        </li>
+        <li><a href="tel:+14073320050">(407) 332-0050</a></li>
+        <li><a href="mailto:CentralAsphalt@gmail.com">CentralAsphalt@gmail.com</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+      <p class="footer-lic">Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+    </div>
+
+    <div class="footer-right">
+      <div class="map-embed">
+        <iframe
+          title="Central Asphalt Sealcoating on Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          src="https://www.google.com/maps?q=203+E+Palmetto+Ave,+Longwood,+FL+32750&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Year + active nav -->
+<script>
+  (function () {
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+  (function () {
+    var nav = document.querySelector('nav[aria-label="Primary"]');
+    if (!nav) return;
+    var here = location.pathname.split('/').pop() || 'index.html';
+    nav.querySelectorAll('a[href]').forEach(function (a) {
+      var file = (a.getAttribute('href') || '').split('#')[0] || 'index.html';
+      if (file === here || (here==='index.html' && a.getAttribute('href').startsWith('index.html#'))) {
+        a.setAttribute('aria-current', 'page');
+      } else {
+        a.removeAttribute('aria-current');
+      }
+    });
+  })();
+</script>
+
+<!-- Tabs + Calculator logic -->
+<script>
+  // --- Tabs toggle ---
+  (function(){
+    var tabs = Array.from(document.querySelectorAll('.calc-tab'));
+    var panels = {
+      'tab-ton':   document.getElementById('panel-ton'),
+      'tab-seal':  document.getElementById('panel-seal'),
+      'tab-basic': document.getElementById('panel-basic')
+    };
+
+    function activate(id){
+      tabs.forEach(function(t){
+        var selected = (t.id === id);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.tabIndex = selected ? 0 : -1;
+        panels[t.id].hidden = !selected;
+      });
+      document.getElementById(id).focus();
+    }
+
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){ activate(t.id); });
+      t.addEventListener('keydown', function(e){
+        var i = tabs.indexOf(t);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+          e.preventDefault();
+          activate(tabs[(i+1)%tabs.length].id);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+          e.preventDefault();
+          activate(tabs[(i-1+tabs.length)%tabs.length].id);
+        } else if (e.key === 'Home'){
+          e.preventDefault(); activate(tabs[0].id);
+        } else if (e.key === 'End'){
+          e.preventDefault(); activate(tabs[tabs.length-1].id);
+        }
+      });
+    });
+  })();
+
+  // Helpers
+  function num(v){ return parseFloat(v) || 0; }
+  function round(n, d){ var p = Math.pow(10, d||2); return Math.round(n*p)/p; }
+
+  // --- Tonnage ---
+  (function(){
+    var len = document.getElementById('lenFt');
+    var wid = document.getElementById('widFt');
+    var thi = document.getElementById('thIn');
+    var den = document.getElementById('density');
+    var out = document.getElementById('tonResult');
+    var clr = document.getElementById('tonClear');
+
+    function calc(){
+      var L = num(len.value), W = num(wid.value), T = num(thi.value), D = num(den.value) || 2.0;
+      var cy = (L * W * T) / 324;           // cubic yards
+      var tons = cy * D;                     // tons
+      var loads = tons / 20;                 // approx 20-ton loads
+      out.textContent = (tons > 0)
+        ? ('Tons: ' + round(tons, 2) + ' | Approx. 20-ton loads: ' + round(loads, 2))
+        : 'Tons: — | Approx. 20-ton loads: —';
+    }
+
+    [len, wid, thi, den].forEach(function(i){ i.addEventListener('input', calc); });
+    clr.addEventListener('click', function(){
+      [len, wid, thi].forEach(function(i){ i.value = ''; });
+      den.value = '2.0';
+      out.textContent = 'Tons: — | Approx. 20-ton loads: —';
+    });
+  })();
+
+  // --- Sealcoat ---
+  (function(){
+    var L = document.getElementById('sealLen');
+    var W = document.getElementById('sealWid');
+    var coats = document.getElementById('coats');
+    var cov = document.getElementById('coverage');
+    var waste = document.getElementById('waste');
+    var area = document.getElementById('area');
+    var out = document.getElementById('sealResult');
+    var clr = document.getElementById('sealClear');
+
+    function calc(){
+      var a = num(area.value) || (num(L.value) * num(W.value));
+      var c = Math.max(1, Math.floor(num(coats.value) || 0));
+      var cv = Math.max(1, num(cov.value));
+      var w = Math.max(0, num(waste.value)/100);
+
+      var gals = (a * c / cv) * (1 + w);
+      var drums = gals / 55;
+
+      out.textContent = (gals > 0)
+        ? ('Gallons: ' + round(gals, 1) + ' | 55-gal drums: ' + round(drums, 2))
+        : 'Gallons: — | 55-gal drums: —';
+    }
+
+    [L, W, coats, cov, waste, area].forEach(function(i){ i.addEventListener('input', calc); });
+    clr.addEventListener('click', function(){
+      [L, W, coats, cov, waste, area].forEach(function(i){ i.value = ''; });
+      coats.value = '2'; cov.value = '80'; waste.value = '10';
+      out.textContent = 'Gallons: — | 55-gal drums: —';
+    });
+  })();
+
+  // --- Regular calculator ---
+  (function(){
+    var display = document.getElementById('basicDisplay');
+    var pad = document.getElementById('basicCalc');
+    var first = null;
+    var operator = null;
+    var waiting = false;
+
+    function inputDigit(d){
+      if (waiting){
+        display.value = d;
+        waiting = false;
+      } else {
+        display.value = (display.value === '0') ? d : display.value + d;
+      }
+    }
+    function inputDot(){
+      if (waiting){
+        display.value = '0.';
+        waiting = false;
+        return;
+      }
+      if (!display.value.includes('.')) display.value += '.';
+    }
+    function setOperator(op){
+      var input = parseFloat(display.value);
+      if (operator && waiting){
+        operator = op;
+        return;
+      }
+      if (first === null){
+        first = input;
+      } else if (operator){
+        first = compute(first, input, operator);
+        display.value = String(first);
+      }
+      operator = op;
+      waiting = true;
+    }
+    function equals(){
+      var input = parseFloat(display.value);
+      if (operator === null || waiting) return;
+      first = compute(first, input, operator);
+      display.value = String(first);
+      operator = null;
+      waiting = true;
+    }
+    function compute(a, b, op){
+      if (op === 'add') return round(a + b, 10);
+      if (op === 'subtract') return round(a - b, 10);
+      if (op === 'multiply') return round(a * b, 10);
+      if (op === 'divide') return (b === 0) ? 0 : round(a / b, 10);
+      return b;
+    }
+    function clearAll(){
+      display.value = '0';
+      first = null; operator = null; waiting = false;
+    }
+    function backspace(){
+      if (waiting) return;
+      if (display.value.length <= 1 || (display.value.length === 2 && display.value.startsWith('-'))){
+        display.value = '0';
+      } else {
+        display.value = display.value.slice(0, -1);
+      }
+    }
+
+    // Button clicks
+    pad.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var n = btn.getAttribute('data-num');
+        var op = btn.getAttribute('data-op');
+        var act = btn.getAttribute('data-act');
+
+        if (n !== null) inputDigit(n);
+        else if (op) setOperator(op);
+        else if (act === 'dot') inputDot();
+        else if (act === 'equals') equals();
+        else if (act === 'ac') clearAll();
+        else if (act === 'c') backspace();
+      });
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', function(e){
+      var k = e.key;
+      if (/\d/.test(k)) { inputDigit(k); return; }
+      if (k === '.') { inputDot(); return; }
+      if (k === '+' ) { setOperator('add'); return; }
+      if (k === '-' ) { setOperator('subtract'); return; }
+      if (k === '*' ) { setOperator('multiply'); return; }
+      if (k === '/' ) { setOperator('divide'); return; }
+      if (k === 'Enter' || k === '=') { e.preventDefault(); equals(); return; }
+      if (k === 'Backspace') { backspace(); return; }
+      if (k === 'Escape') { clearAll(); return; }
+    });
+  })();
+</script>
+
+</body>
+</html>
