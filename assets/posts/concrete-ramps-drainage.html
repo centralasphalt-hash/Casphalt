@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concrete Ramps & Drainage: Do It Once, Right</title>
+  <meta name="description" content="Good grading and ramp placement prevent puddles, heaving, and trip hazards. Here’s how to get it right the first time." />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="../logo.png" alt="Central Asphalt Sealcoating logo" width="44" height="44" style="border-radius:8px;object-fit:contain;" />
+        <h1>Central Asphalt Sealcoating</h1>
+      </div>
+      <div class="header-contact" style="text-align:center;">
+        <p style="margin:0;font-weight:600;">203 E Palmetto Ave, Longwood, FL 32750</p>
+        <p style="margin:0;"><a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a></p>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="../../index.html#home">Home</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../services.html">Services</a></li>
+          <li><a href="../../blog.html">Blog</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <section id="home" class="hero" role="banner" aria-label="Hero"
+         style="--hero-image: url('assets/hero-lot.png');">
+             <div class="container">
+      <p class="eyebrow">Concrete</p>
+      <h1>Concrete Ramps &amp; Drainage: Do It Once, Right</h1>
+      <p>Smart grading and details that keep water away—and customers safe.</p>
+    </div>
+  </section>
+
+  <section id="post" style="padding:48px 0;">
+    <div class="container">
+      <article>
+        <p style="color:var(--muted);margin:0 0 10px;">
+          <time datetime="2025-05-15">May 15, 2025</time> • 4–5 min read
+        </p>
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <h2>Why drainage comes first</h2>
+        <p>Standing water shortens pavement life and creates hazards. Before adding ramps or sidewalks, confirm slopes carry water to inlets or swales—and that soil won’t wash out.</p>
+
+        <h3>Details that matter</h3>
+        <ul>
+          <li><strong>Ramp placement:</strong> Align with accessible routes to doors, not traffic lanes.</li>
+          <li><strong>Landings:</strong> Level, properly sized, and clear of obstructions.</li>
+          <li><strong>Transitions:</strong> Tie-in to asphalt without creating ponding or trip edges.</li>
+          <li><strong>Detectable warnings:</strong> Specify durable materials at curb ramps.</li>
+        </ul>
+
+        <h3>Typical scope</h3>
+        <ol>
+          <li>Demo and excavation; confirm subgrade and compaction.</li>
+          <li>Set forms to grade and slope; place reinforcement as needed.</li>
+          <li>Pour, finish, edge; cure per spec; sawcut joints.</li>
+          <li>Stripe or add signage after cure; verify accessible routes.</li>
+        </ol>
+
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="stack" style="text-align:center">
+          <a class="button" href="../../contact.html">Talk concrete & drainage</a>
+          <a href="../../blog.html" style="display:block;margin-top:10px;">← Back to Blog</a>
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+      <p>Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('nav[aria-label="Primary"]');
+      if (!nav) return;
+      if (location.pathname.indexOf('/posts/') !== -1) {
+        nav.querySelectorAll('a').forEach(function(a){ a.removeAttribute('aria-current'); });
+        var blog = nav.querySelector('a[href$="blog.html"]');
+        if (blog) blog.setAttribute('aria-current', 'page');
+      }
+      var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
