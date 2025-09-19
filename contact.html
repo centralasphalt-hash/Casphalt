@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us | Central Asphalt Sealcoating</title>
   <meta name="description" content="Get a free estimate for sealcoating, asphalt repairs, striping, and concrete services in Central Florida." />
-  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="icon" href="assets/favicon.ico" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -22,8 +22,12 @@
     <!-- Address + Phone -->
     <div class="header-contact" style="text-align:center;">
       <p style="margin:0;font-weight:600;">
-        203 E Palmetto Ave, Longwood, FL 32750
+        <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+          target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">
+          203 E Palmetto Ave, Longwood, FL 32750
+        </a>
       </p>
+
       <p style="margin:0;">
         <a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a>
       </p>
@@ -41,7 +45,6 @@
     </nav>
   </div>
 </header>
-
 
   <!-- Hero -->
 <section id="home" class="hero" role="banner" aria-label="Hero"
@@ -71,9 +74,19 @@
 
         <article class="service-item" aria-label="Office">
           <h3>Office</h3>
-          <p>203 E Palmetto Ave<br />Longwood, FL 32750</p>
+          <p>
+            <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+              target="_blank" rel="noopener">
+              203 E Palmetto Ave<br>Longwood, FL 32750
+            </a>
+          </p>
+          <p style="margin-top:10px;">
+            <a class="button" href="https://www.google.com/maps/dir/?api=1&destination=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+              target="_blank" rel="noopener">Get Directions</a>
+          </p>
           <p style="margin-top:8px;color:var(--muted);">Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
         </article>
+
       </div>
     </div>
   </section>
@@ -86,12 +99,20 @@
         Fill out the form and we’ll reach out with a free estimate. Fields marked with * are required.
       </p>
 
-      <form action="/send_message.php" method="post" aria-label="Contact form" novalidate>
+      <!-- UPDATED: Formspree endpoint + IDs to match the JS below -->
+      <form id="contactForm"
+            action="https://formspree.io/f/xwpngnpg"
+            method="POST"
+            aria-label="Contact form">
+
         <!-- Honeypot (spam prevention) -->
         <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
           <label for="company">Company</label>
           <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
         </div>
+
+        <!-- Optional email subject line you receive -->
+        <input type="hidden" name="_subject" value="Website contact — Central Asphalt" />
 
         <div class="row">
           <div class="col-6">
@@ -133,38 +154,54 @@
         </div>
 
         <div class="actions">
-          <a class="button" href="mailto:CentralAsphalt@gmail.com" aria-label="Email us directly">Send Message</a>
+          <button type="submit" class="button" id="sendBtn">Send Message</button>
         </div>
 
-        <p style="margin-top:10px;color:var(--muted);font-size:.95rem;">
-          By submitting this form, you agree to be contacted about your request. We respect your privacy and never sell your information.
-        </p>
+        <!-- Status message area -->
+        <p id="formStatus" style="margin-top:10px;color:var(--muted);font-size:.95rem;"></p>
       </form>
     </div>
   </section>
-
-  <!-- Map Placeholder (local image to avoid external embeds) -->
-  <section aria-label="Service area map">
-    <div class="container" style="padding:32px 0;">
-      <h2>Our Service Area</h2>
-      <p style="color:var(--muted);max-width:70ch;">
-        We serve Central Florida including Orange, Seminole, Osceola, Volusia, Lake, and Marion counties.
-      </p>
-      <div class="section-divider" aria-hidden="true"></div>
-      <figure style="margin-top:14px;">
-        <img src="/assets/map-service-area.jpg" alt="Central Florida service area map" />
-        <figcaption style="color:var(--muted);margin-top:6px;">Coverage map for reference (replace with your local image).</figcaption>
-      </figure>
-    </div>
-  </section>
-
+  
   <!-- Footer -->
-  <footer role="contentinfo">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
-      <p>Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+<footer role="contentinfo">
+  <div class="container footer-grid-3">
+    <!-- Left: logo only -->
+    <a class="footer-logo" href="index.html#home" aria-label="Go to Home">
+      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="64" height="64" />
+    </a>
+
+    <!-- Middle: contact info -->
+    <div class="footer-contact-wrap">
+      <ul class="footer-contact">
+        <li>
+          <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+             target="_blank" rel="noopener">
+            203 E Palmetto Ave, Longwood, FL 32750
+          </a>
+        </li>
+        <li><a href="tel:+14073320050">(407) 332-0050</a></li>
+        <li><a href="mailto:CentralAsphalt@gmail.com">CentralAsphalt@gmail.com</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+      <p class="footer-lic">Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
     </div>
-  </footer>
+
+    <!-- Right: simple map -->
+    <div class="footer-right">
+      <div class="map-embed">
+        <iframe
+          title="Central Asphalt Sealcoating on Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          src="https://www.google.com/maps?q=203+E+Palmetto+Ave,+Longwood,+FL+32750&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <!-- Tiny inline script for year -->
   <script>
@@ -173,7 +210,8 @@
       if (y) y.textContent = new Date().getFullYear();
     })();
   </script>
-<!-- Active nav highlighter -->
+
+  <!-- Active nav highlighter -->
   <script>
     (function () {
       var nav = document.querySelector('nav[aria-label="Primary"]');
@@ -189,5 +227,61 @@
       });
     })();
   </script>
+
+  <!-- Formspree AJAX handler (matches IDs above) -->
+  <script>
+  (function () {
+    var form     = document.getElementById('contactForm');
+    var statusEl = document.getElementById('formStatus');
+    var sendBtn  = document.getElementById('sendBtn');
+
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      // Honeypot: if filled, silently drop
+      var trap = document.getElementById('company');
+      if (trap && trap.value.trim()) return;
+
+      // Front-end required checks
+      if (!form.reportValidity || !form.reportValidity()) return;
+
+      statusEl.style.color = 'var(--muted)';
+      statusEl.textContent = 'Sending…';
+      sendBtn.disabled = true;
+
+      try {
+        var res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        var data = {};
+        try { data = await res.json(); } catch (_) {}
+
+        if (res.ok) {
+          form.reset();
+          statusEl.style.color = '#16a34a'; // green
+          statusEl.textContent = 'Thanks! Your message has been sent.';
+        } else if (data && data.errors) {
+          statusEl.style.color = '#b91c1c';
+          statusEl.innerHTML = 'Please fix the following: ' +
+            data.errors.map(function(e){ return e.message; }).join(', ');
+        } else {
+          throw new Error('Request failed');
+        }
+      } catch (err) {
+        statusEl.style.color = '#b91c1c'; // red
+        statusEl.innerHTML = 'Something went wrong. Please try again, or email us at ' +
+          '<a href="mailto:CentralAsphalt@gmail.com">CentralAsphalt@gmail.com</a>.';
+      } finally {
+        sendBtn.disabled = false;
+      }
+    });
+  })();
+  </script>
+
 </body>
 </html>
