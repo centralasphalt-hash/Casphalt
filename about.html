@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us | Central Asphalt Sealcoating</title>
+  <meta name="description" content="Learn more about Central Asphalt Sealcoating — a family-owned pavement maintenance company serving Central Florida since 1987." />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <!-- Logo + Company -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="44" height="44" style="border-radius:8px;object-fit:contain;" />
+      <h1>Central Asphalt Sealcoating</h1>
+    </div>
+
+    <!-- Address + Phone -->
+    <div class="header-contact" style="text-align:center;">
+      <p style="margin:0;font-weight:600;">
+        203 E Palmetto Ave, Longwood, FL 32750
+      </p>
+      <p style="margin:0;">
+        <a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a>
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Hero -->
+  <section class="hero" role="banner" aria-label="About hero" style="background-image:url(\'/assets/about-crew.jpg\'); --hero-image: url('/assets/about-crew.jpg')">
+    <div class="container">
+      <p class="eyebrow">About us</p>
+      <h1>Family-Owned &amp; Operated Since 1987</h1>
+      <p>Over 30 years of protecting and improving Central Florida’s pavement surfaces.</p>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section id="about-content" aria-labelledby="about-title">
+    <div class="container">
+      <h2 id="about-title">Our Story</h2>
+      <p>Central Asphalt Sealcoating is located in Lake Mary, FL and we proudly serve Central Florida, including but not limited to, Orange, Seminole, Osceola, Volusia, Lake, and Marion Counties.</p>
+      <p>We are a full service pavement maintenance company. Central Asphalt Sealcoating is family owned and operated and we provide a one-stop-shop for all of your parking lot needs. In addition to asphalt and sealcoating services, we offer some concrete work, including sidewalk repair for our existing customers.</p>
+      <P>We’ve been around for over 34 years, so we’re experts at what we do, and we work with commercial and residential customers. We only used the highest quality materials, like Jennite, and all of out technicians are manufacturer approved and trained.</P>
+      <p>Our mission is to provide superior quality pavement products and services to area businesses at competitive prices. Central Asphalt Sealcoating does this by offering a complete line of products and services to meet your exact needs.</p>
+      <p>Ready to get started? We offer free estimates and can’t wait to see how we can help you! Give us a call today, we can’t wait to meet you! In our world, everything really is black and white or has yellow stripes!</p>  
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <h2>Our Mission</h2>
+      <p>
+        To deliver professional, cost-effective, and long-lasting pavement solutions that protect property investments
+        while keeping communities safe and accessible. We use only the highest-quality materials, skilled technicians, and
+        proven techniques to ensure every job is done right the first time.
+      </p>
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <h2>Our Values</h2>
+      <ul style="margin-top:12px; line-height:1.7;">
+        <li><strong>Integrity:</strong> Honest pricing, transparent communication, and reliable results.</li>
+        <li><strong>Quality:</strong> We stand behind our work with proven methods and durable materials.</li>
+        <li><strong>Safety:</strong> From ADA compliance to traffic flow, safety is built into every project.</li>
+        <li><strong>Community:</strong> Proud to serve local businesses, municipalities, HOAs, and homeowners alike.</li>
+      </ul>
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <h2>Why Choose Us?</h2>
+      <p>
+        With decades of experience, competitive pricing, and a reputation for professionalism, we’re not just contractors
+        — we’re long-term partners in maintaining your property. Whether it’s a single driveway or a large commercial
+        parking lot, we deliver the same level of care and precision.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" aria-label="Call to action">
+    <div class="container">
+      <h2>Let’s Work Together</h2>
+      <p>Free estimates, friendly service, and dependable results since 1987.</p>
+      <a class="button" href="contact.html">Request Estimate</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+      <p>Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+<!-- Active nav highlighter -->
+  <script>
+    (function () {
+      var nav = document.querySelector('nav[aria-label="Primary"]');
+      if (!nav) return;
+      var here = location.pathname.split('/').pop() || 'index.html';
+      nav.querySelectorAll('a[href]').forEach(function (a) {
+        var file = (a.getAttribute('href') || '').split('#')[0] || 'index.html';
+        if (file === here || (here==='index.html' && a.getAttribute('href').startsWith('index.html#'))) {
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

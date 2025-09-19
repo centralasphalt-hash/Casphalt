@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Central Asphalt Sealcoating | Parking Lot Professionals</title>
+  <meta name="description" content="Sealcoating, asphalt repair, striping, and concrete services for Central Florida. Free estimates." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <!-- Logo + Company -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="44" height="44" style="border-radius:8px;object-fit:contain;" />
+      <h1>Central Asphalt Sealcoating</h1>
+    </div>
+
+    <!-- Address + Phone -->
+    <div class="header-contact" style="text-align:center;">
+      <p style="margin:0;font-weight:600;">
+        203 E Palmetto Ave, Longwood, FL 32750
+      </p>
+      <p style="margin:0;">
+        <a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a>
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+  <!-- Hero -->
+  <section id="home" class="hero" role="banner" aria-label="Hero"
+         style="--hero-image: url('assets/hero-lot.png');">    <div class="container">
+      <p class="eyebrow">Since 1987</p>
+      <h1>Parking Lot Professionals for Central Florida</h1>
+      <p>Sealcoating, asphalt repair, striping, concrete &amp; more—delivered by a family-owned, fully insured crew.</p>
+      <div class="stack" style="margin-top:18px;">
+        <a class="button" href="contact.html" aria-label="Request a free estimate">Get a Free Estimate</a>
+        <p style="opacity:.9;margin-top:6px;">Call <strong>(407) 332-0050</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About (preview, links to full page) -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <p class="eyebrow">About us</p>
+      <h2 id="about-title">Quality, Safety &amp; Long-Lasting Results</h2>
+      <p>
+        We’re a full-service pavement maintenance company serving Central Florida. Our team uses premium materials and proven
+        processes to protect your investment and keep traffic flowing—on time and on budget.
+      </p>
+      <p><a href="about.html">Learn more about us &raquo;</a></p>
+    </div>
+  </section>
+
+  <!-- Services (preview, links to full page) -->
+  <section id="services" class="services" aria-labelledby="services-title">
+    <div class="container">
+      <p class="eyebrow">Services</p>
+      <h2 id="services-title">Everything Your Pavement Needs</h2>
+      <div class="service-list">
+        <article class="service-item">
+          <h3>Asphalt Repairs &amp; Paving</h3>
+          <p>Full-depth repairs, overlays, and paving to restore your surface.</p>
+        </article>
+        <article class="service-item">
+          <h3>Sealcoating</h3>
+          <p>Premium and standard sealcoating, including Jennite certified applications.</p>
+        </article>
+        <article class="service-item">
+          <h3>Striping, Signs &amp; Bollards</h3>
+          <p>ADA compliant striping, parking lot layout, custom signage, car stops &amp; bollards.</p>
+        </article>
+      </div>
+      <p style="margin-top:20px;text-align:center;">
+        <a href="services.html" class="button">View All Services</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" aria-label="Call to action">
+    <div class="container">
+      <h2>Ready to Get Started?</h2>
+      <p>Free estimates. Call us today at <strong>(407) 332-0050</strong></p>
+      <a href="contact.html" class="button">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+      <p>Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+    </div>
+  </footer>
+
+  <!-- Tiny inline script for year -->
+  <script>
+    (function () {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+<!-- Active nav highlighter -->
+  <script>
+    (function () {
+      var nav = document.querySelector('nav[aria-label="Primary"]');
+      if (!nav) return;
+      var here = location.pathname.split('/').pop() || 'index.html';
+      nav.querySelectorAll('a[href]').forEach(function (a) {
+        var file = (a.getAttribute('href') || '').split('#')[0] || 'index.html';
+        if (file === here || (here==='index.html' && a.getAttribute('href').startsWith('index.html#'))) {
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

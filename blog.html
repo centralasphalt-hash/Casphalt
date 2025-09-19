@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog | Central Asphalt Sealcoating</title>
+  <meta name="description" content="Articles on sealcoating, asphalt repairs, striping, and concrete care for Central Florida properties." />
+  <link rel="icon" href="/assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+<header>
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <!-- Logo + Company -->
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="44" height="44" style="border-radius:8px;object-fit:contain;" />
+      <h1>Central Asphalt Sealcoating</h1>
+    </div>
+
+    <!-- Address + Phone -->
+    <div class="header-contact" style="text-align:center;">
+      <p style="margin:0;font-weight:600;">
+        203 E Palmetto Ave, Longwood, FL 32750
+      </p>
+      <p style="margin:0;">
+        <a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a>
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  <!-- Hero -->
+  <section class="hero" role="banner" aria-label="Blog hero" style="background-image:url(\'/assets/blog-hero.jpg\'); --hero-image: url('/assets/blog-hero.jpg')">
+    <div class="container">
+      <p class="eyebrow">Insights</p>
+      <h1>Expert Tips for Longer-Lasting Pavement</h1>
+      <p>Maintenance guides, budgeting advice, and before/after case studies — written for property managers, HOAs, and owners.</p>
+
+      <!-- Filters -->
+        <div aria-label="Categories" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+          <button class="button" data-cat="all" type="button">All</button>
+          <button class="button" data-cat="Sealcoating" type="button">Sealcoating</button>
+          <button class="button" data-cat="Asphalt" type="button">Asphalt</button>
+          <button class="button" data-cat="Striping" type="button">Striping</button>
+          <button class="button" data-cat="Concrete" type="button">Concrete</button>
+          <button class="button" data-cat="Budgeting" type="button">Budgeting</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- Posts grid -->
+  <section class="services" aria-label="Blog posts">
+    <div class="container">
+      <h2>Latest Posts</h2>
+      <div id="posts" class="service-list"><!-- Cards injected by JS --></div>
+
+      <!-- Load more -->
+      <p style="text-align:center;margin-top:20px;">
+        <button id="loadMore" class="button" type="button">Load more</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" aria-label="Estimate">
+    <div class="container">
+      <h2>Have a project in mind?</h2>
+      <p>Ask us anything about your lot — we’re happy to help.</p>
+      <a class="button" href="contact.html">Request Estimate</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+      <p>Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+    </div>
+  </footer>
+
+  <!-- Scripts: active nav + blog data/render (local-only) -->
+  <script>
+    // Active nav (auto set aria-current)
+    (function () {
+      var nav = document.querySelector('nav[aria-label="Primary"]');
+      if (!nav) return;
+      var here = location.pathname.split('/').pop() || 'index.html';
+      nav.querySelectorAll('a[href]').forEach(function (a) {
+        var file = (a.getAttribute('href') || '').split('#')[0] || 'index.html';
+        if (file === here) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+    })();
+
+    // --- Blog data (edit/add posts here) ---
+    // Each post: title, excerpt, url (local file), date (YYYY-MM-DD), categories [..], image (optional)
+    var BLOG_POSTS = [
+      {
+        title: "Sealcoating 101: When, Why, and How to Budget",
+        excerpt: "A quick guide to timing your first (and next) sealcoat, choosing materials, and planning for minimal downtime.",
+        url: "assets/posts/sealcoating-101.html",
+        date: "2025-08-20",
+        categories: ["Sealcoating","Budgeting"],
+        image: "/assets/blog/sealcoat-101.jpg"
+      },
+      {
+        title: "Asphalt Repairs: Potholes vs. Overlays",
+        excerpt: "Not sure whether to patch or pave? Here’s a framework to decide based on traffic loads, drainage, and age.",
+        url: "posts/asphalt-repairs-patch-vs-overlay.html",
+        date: "2025-07-12",
+        categories: ["Asphalt"],
+        image: "/assets/blog/repairs-overlay.jpg"
+      },
+      {
+        title: "ADA & Striping: Common Layout Mistakes",
+        excerpt: "From slope to stall counts — the small details that keep you compliant and safe.",
+        url: "posts/ada-striping-mistakes.html",
+        date: "2025-06-03",
+        categories: ["Striping"],
+        image: "/assets/blog/ada-striping.jpg"
+      },
+      {
+        title: "Concrete Ramps & Drainage: Do It Once, Right",
+        excerpt: "How proper grading and ramp placement prevent puddles, heaving, and trip hazards.",
+        url: "posts/concrete-ramps-drainage.html",
+        date: "2025-05-15",
+        categories: ["Concrete"],
+        image: "/assets/blog/concrete-ramps.jpg"
+      },
+      {
+        title: "Annual Parking Lot Budget Template",
+        excerpt: "A simple way to plan crack sealing, sealcoating, and capital work over 3–5 years.",
+        url: "posts/parking-lot-budget-template.html",
+        date: "2025-04-02",
+        categories: ["Budgeting"],
+        image: "/assets/blog/budget-template.jpg"
+      }
+    ];
+
+    // --- Render logic ---
+    (function () {
+      var POSTS_PER_PAGE = 6; // adjust as needed
+      var start = 0;
+      var currentCategory = 'all';
+      var searchInput = document.getElementById('search');
+      var clearBtn = document.getElementById('clearSearch');
+      var postsEl = document.getElementById('posts');
+      var loadMoreBtn = document.getElementById('loadMore');
+
+      // Sort by date desc
+      BLOG_POSTS.sort(function (a, b) { return (a.date < b.date) ? 1 : -1; });
+
+      function matches(post, term, cat) {
+        var okCat = (cat === 'all') || (post.categories || []).includes(cat);
+        if (!term) return okCat;
+        term = term.toLowerCase();
+        return okCat && (
+          post.title.toLowerCase().includes(term) ||
+          post.excerpt.toLowerCase().includes(term) ||
+          (post.categories || []).join(' ').toLowerCase().includes(term)
+        );
+      }
+
+      function card(post) {
+        var cats = (post.categories || []).map(function (c){ return `<span style="font-size:.8rem;color:var(--muted)">${c}</span>`; }).join(' · ');
+        var img = post.image ? `<img src="${post.image}" alt="" style="border-radius:10px; margin-bottom:10px;">` : "";
+        return `
+          <article class="service-item">
+            ${img}
+            <h3>${post.title}</h3>
+            <p style="margin:0 0 10px">${post.excerpt}</p>
+            <p style="margin:0 0 12px; color:var(--muted)">${cats}</p>
+            <p style="margin:0"><a class="button" href="${post.url}">Read more</a></p>
+          </article>
+        `;
+      }
+
+      function render(reset) {
+        if (reset) { start = 0; postsEl.innerHTML = ''; }
+        var term = (searchInput && searchInput.value || '').trim();
+        var filtered = BLOG_POSTS.filter(function (p){ return matches(p, term, currentCategory); });
+
+        var slice = filtered.slice(start, start + POSTS_PER_PAGE);
+        postsEl.insertAdjacentHTML('beforeend', slice.map(card).join(''));
+        start += slice.length;
+
+        // Load more visibility
+        loadMoreBtn.style.display = (start < filtered.length) ? 'inline-block' : 'none';
+      }
+
+      // Category buttons
+      document.querySelectorAll('[data-cat]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentCategory = btn.getAttribute('data-cat') || 'all';
+          // visual hint
+          document.querySelectorAll('[data-cat]').forEach(function (b){ b.style.opacity = (b === btn) ? '1' : '.7'; });
+          render(true);
+        });
+      });
+
+      // Search
+      if (searchInput) searchInput.addEventListener('input', function () { render(true); });
+      if (clearBtn) clearBtn.addEventListener('click', function () { searchInput.value = ''; render(true); });
+
+      // Load more
+      loadMoreBtn.addEventListener('click', function () { render(false); });
+
+      // First paint
+      render(true);
+    })();
+
+    // Year in footer
+    (function () {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+<!-- Active nav highlighter -->
+  <script>
+    (function () {
+      var nav = document.querySelector('nav[aria-label="Primary"]');
+      if (!nav) return;
+      var here = location.pathname.split('/').pop() || 'index.html';
+      nav.querySelectorAll('a[href]').forEach(function (a) {
+        var file = (a.getAttribute('href') || '').split('#')[0] || 'index.html';
+        if (file === here || (here==='index.html' && a.getAttribute('href').startsWith('index.html#'))) {
+          a.setAttribute('aria-current', 'page');
+        } else {
+          a.removeAttribute('aria-current');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
