@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact Us | Central Asphalt Sealcoating</title>
   <meta name="description" content="Get a free estimate for sealcoating, asphalt repairs, striping, and concrete services in Central Florida." />
-  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="icon" href="assets/logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -19,18 +19,9 @@
       <h1>Central Asphalt Sealcoating</h1>
     </div>
 
-    <!-- Address + Phone -->
+    <!-- Get Free Estimate Button -->
     <div class="header-contact" style="text-align:center;">
-      <p style="margin:0;font-weight:600;">
-        <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
-          target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">
-          203 E Palmetto Ave, Longwood, FL 32750
-        </a>
-      </p>
-
-      <p style="margin:0;">
-        <a href="tel:+14073320050" style="color:#fff;text-decoration:none;">(407) 332-0050</a>
-      </p>
+      <a class="button" href="contact.html" style="display:inline-block;padding:12px 20px;font-size:0.95rem;font-weight:700;">Get a Free Estimate</a>
     </div>
 
     <!-- Navigation -->
@@ -52,7 +43,7 @@
     <div class="container">
       <p class="eyebrow">Contact</p>
       <h1>Request a Free Estimate</h1>
-      <p>Tell us about your project. We’ll get back to you promptly with next steps and scheduling options.</p>
+      <p>Send us the details, we'll handle the rest.</p>
     </div>
   </section>
 
@@ -61,15 +52,15 @@
     <div class="container" style="padding:32px 0;">
       <div class="service-list">
         <article class="service-item" aria-label="Phone">
-          <h3>Call</h3>
+          <h3>Call (Fastest Option)</h3>
           <p><a href="tel:+14073320050"><strong>(407) 332-0050</strong></a></p>
-          <p style="margin-top:8px;color:var(--muted);">Mon–Fri, 8:00 AM – 5:00 PM</p>
+          <p style="margin-top:8px;color:var(--muted);">Mon–Fri, 6:00 AM – 5:00 PM</p>
         </article>
 
         <article class="service-item" aria-label="Email">
           <h3>Email</h3>
           <p><a href="mailto:CentralAsphalt@gmail.com"><strong>CentralAsphalt@gmail.com</strong></a></p>
-          <p style="margin-top:8px;color:var(--muted);">We typically reply within one business day.</p>
+          <p style="margin-top:8px;color:var(--muted);">We respond promptly</p>
         </article>
 
         <article class="service-item" aria-label="Office">
@@ -84,7 +75,7 @@
             <a class="button" href="https://www.google.com/maps/dir/?api=1&destination=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
               target="_blank" rel="noopener">Get Directions</a>
           </p>
-          <p style="margin-top:8px;color:var(--muted);">Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+          <p style="margin-top:8px;color:var(--muted);">Serving All Central Florida</p>
         </article>
 
       </div>
@@ -96,7 +87,7 @@
     <div class="container">
       <h2 id="form-title">Tell Us About Your Project</h2>
       <p style="color:var(--muted);max-width:70ch;">
-        Fill out the form and we’ll reach out with a free estimate. Fields marked with * are required.
+        Fill out the form and we'll reach out with a free estimate. Fields marked with * are required.
       </p>
 
       <!-- UPDATED: Formspree endpoint + IDs to match the JS below -->
@@ -107,39 +98,45 @@
 
         <!-- Honeypot (spam prevention) -->
         <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
-          <label for="company">Company</label>
-          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+          <label for="company_trap">Company</label>
+          <input id="company_trap" name="company_trap" type="text" tabindex="-1" autocomplete="off" />
         </div>
 
         <!-- Optional email subject line you receive -->
-        <input type="hidden" name="_subject" value="Website contact — Central Asphalt" />
+        <input type="hidden" name="_subject" value="Website contact – Central Asphalt" />
 
         <div class="row">
           <div class="col-6">
-            <label for="name">Name *</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required />
+            <label for="first_name">First Name *</label>
+            <input id="first_name" name="first_name" type="text" placeholder="Your first name" required />
           </div>
+          <div class="col-6">
+            <label for="last_name">Last Name *</label>
+            <input id="last_name" name="last_name" type="text" placeholder="Your last name" required />
+          </div>
+
           <div class="col-6">
             <label for="email">Email *</label>
             <input id="email" name="email" type="email" placeholder="you@example.com" required />
           </div>
-
           <div class="col-6">
             <label for="phone">Phone</label>
             <input id="phone" name="phone" type="tel" placeholder="(###) ###-####" />
           </div>
-          <div class="col-6">
+
+          <div class="col-12">
+            <label for="business_name">Business Name (Optional)</label>
+            <input id="business_name" name="business_name" type="text" placeholder="Your business name" />
+          </div>
+
+          <div class="col-12">
             <label for="service">Service of Interest</label>
-            <select id="service" name="service">
-              <option value="">Select an option</option>
-              <option>Asphalt Repairs &amp; Paving</option>
-              <option>Sealcoating</option>
-              <option>Striping &amp; ADA</option>
-              <option>Concrete &amp; Sidewalks</option>
-              <option>Crack Filling</option>
-              <option>Maintenance Plan</option>
-              <option>Other</option>
-            </select>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:8px;margin-top:8px;">
+              <label style="display:flex;align-items:center;gap:8px;font-weight:normal;margin:0;">
+                <input type="checkbox" name="service" value="Other" style="width:auto;margin:0;" />
+                Other
+              </label>
+            </div>
           </div>
 
           <div class="col-12">
@@ -185,7 +182,7 @@
       </ul>
 
       <p class="footer-copy">&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
-      <p class="footer-lic">Licensed &amp; Insured • Serving Orange, Seminole, Osceola, Volusia, Lake &amp; Marion Counties</p>
+      <p class="footer-lic">Licensed &amp; Insured</p>
     </div>
 
     <!-- Right: simple map -->
@@ -241,7 +238,7 @@
       e.preventDefault();
 
       // Honeypot: if filled, silently drop
-      var trap = document.getElementById('company');
+      var trap = document.getElementById('company_trap');
       if (trap && trap.value.trim()) return;
 
       // Front-end required checks
@@ -284,4 +281,3 @@
   </script>
 
 </body>
-</html>
