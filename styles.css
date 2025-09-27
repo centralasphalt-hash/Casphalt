@@ -1,15 +1,17 @@
 /* =========================
    Central Asphalt Sealcoating
-   Modern UI (v2.4, fixed palette)
+   Updated Styles (v3.0, logo-matched colors)
    ========================= */
 
 /* ---------- Theme ---------- */
 :root{
-  /* Brand (neutral charcoal + warm amber) */
-  --brand-blue:#1f2937;        /* charcoal-leaning blue */
-  --brand-blue-900:#111827;    /* near-black */
-  --brand-red:#c62828;         /* optional CTA band */
-  --accent:#f59e0b;            /* amber for buttons/accents */
+  /* Brand colors to match new CAS logo */
+  --brand-blue:#2c5aa0;        /* navy blue from logo background */
+  --brand-blue-900:#1e3f73;    /* darker navy */
+  --brand-red:#e53e3e;         /* red from CAS letters */
+  --brand-red-hover:#c53030;   /* darker red for hover states */
+  --accent:#e53e3e;            /* use red as primary accent */
+  --accent-hover:#c53030;      /* darker red for hover states */
 
   /* Neutrals */
   --ink:#0e1116;               /* primary text */
@@ -18,21 +20,21 @@
   --bg:#ffffff;
   --bg-alt:#f8fafc;
   --card:#ffffff;
-  --shadow:0 10px 30px rgba(12, 32, 73, .08);
+  --shadow:0 10px 30px rgba(0, 26, 51, .08);
 
   /* Component */
   --radius:14px;
   --radius-lg:20px;
-  --ring:0 0 0 3px rgba(245,158,11,.30); /* amber focus ring */
+  --ring:0 0 0 3px rgba(229,62,62,.30); /* red focus ring to match logo */
 
   /* Hero */
   --hero-image: none; /* e.g. url('assets/hero-lot.png') */
-  --hero-overlay: linear-gradient(180deg, rgba(17,24,39,.92), rgba(17,24,39,.86));
+  --hero-overlay: linear-gradient(180deg, rgba(30,63,115,.92), rgba(44,90,160,.86));
 
   /* Services detail media */
-  --service-figure-ratio: 4 / 3;              /* 16/10 or 16/9 for wider; 5/4 for taller */
+  --service-figure-ratio: 4 / 3;              
   --service-figure-radius: 12px;
-  --service-img-col: clamp(440px, 38vw, 560px);/* keep ≤ native width to avoid grain */
+  --service-img-col: clamp(440px, 38vw, 560px);
 }
 
 /* ---------- Base ---------- */
@@ -42,15 +44,15 @@ body{
   margin:0;
   color:var(--ink);
   background:var(--bg);
-  font:400 16px/1.65 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font:400 16px/1.65 "Georgia", "Times New Roman", serif; /* Changed to serif to match traditional logo style */
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 @media (min-width:1200px){ body{ font-size:17px } }
 img{ max-width:100%; display:block }
 
 /* Links (dark on light) */
-a{ color:var(--brand-blue); text-decoration:none }
-a:hover{ color:#111827; text-decoration:underline }
+a{ color:var(--brand-blue); text-decoration:none; transition: color 0.2s ease; }
+a:hover{ color:var(--accent); text-decoration:underline }
 
 /* Ensure default text is readable */
 p, li, dd, dt, details > summary{ color:var(--ink) }
@@ -71,11 +73,35 @@ header .container{
   display:flex; align-items:center; justify-content:space-between;
   padding-block:14px; gap:12px; flex-wrap:wrap;
 }
-header h1{ font-size:1.15rem; letter-spacing:.2px; margin:0; white-space:nowrap }
+
+/* Updated company name font to match logo style */
+header h1{ 
+  font-size:1.15rem; 
+  letter-spacing:.2px; 
+  margin:0; 
+  white-space:nowrap;
+  font-family: "Times New Roman", serif;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
 
 /* Logo sizing */
 header img{ width:72px; height:72px; border-radius:8px; object-fit:contain }
 @media (max-width:640px){ header img{ width:44px; height:44px } }
+
+/* Header button styling */
+.header-contact .button {
+  background: var(--brand-red);
+  color: #fff;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.header-contact .button:hover {
+  background: var(--brand-red-hover);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(229,62,62,.3);
+}
 
 /* Clickable brand helper (if using <a class="brand">) */
 header .brand{ display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none }
@@ -99,7 +125,7 @@ nav a:active{ transform:translateY(1px) }
   min-height:58svh; display:grid; place-items:center; text-align:center; color:#fff;
   background:
     var(--hero-overlay),
-    radial-gradient(1200px 420px at 10% -10%, rgba(198,40,40,.28), transparent),
+    radial-gradient(1200px 420px at 10% -10%, rgba(229,62,62,.28), transparent),
     var(--hero-image);
   background-size:cover; background-position:center;
   padding:72px 0;
@@ -107,19 +133,26 @@ nav a:active{ transform:translateY(1px) }
 .hero .container{ max-width:900px }
 .eyebrow{
   display:inline-block; text-transform:uppercase; letter-spacing:.14em;
-  font-weight:800; color:var(--accent); font-size:.8rem; margin-bottom:8px;
+  font-weight:800; color:#fff; font-size:.8rem; margin-bottom:8px;
+  background: var(--brand-red);
+  padding: 4px 12px;
+  border-radius: 20px;
 }
 .hero h1{
   margin:0 0 8px; line-height:1.12;
   font-size:clamp(1.9rem, 3.2vw + 1rem, 3.4rem);
   text-shadow:0 10px 34px rgba(0,0,0,.45);
+  font-family: "Times New Roman", serif;
+  font-weight: bold;
 }
 .hero p{ font-size:clamp(1rem, .6vw + .95rem, 1.15rem); color:#fff }
 
 /* ---------- Section Titles ---------- */
 section h2{
   font-size:clamp(1.4rem, 1.2vw + 1rem, 2rem);
-  color:#111827; margin:0 0 12px;
+  color:var(--brand-blue-900); margin:0 0 12px;
+  font-family: "Times New Roman", serif;
+  font-weight: bold;
 }
 
 /* ---------- About ---------- */
@@ -138,18 +171,21 @@ section h2{
   padding:22px; box-shadow:var(--shadow);
   transition:transform .16s ease, box-shadow .16s ease, border-color .2s ease;
   position:relative; isolation:isolate;
+  cursor: pointer; /* Make entire card clickable */
 }
 .service-item::after{
   content:""; position:absolute; inset:0; pointer-events:none; border-radius:var(--radius);
-  box-shadow:0 0 0 0 rgba(245,158,11,.35) inset; transition:box-shadow .2s ease;
+  box-shadow:0 0 0 0 rgba(229,62,62,.35) inset; transition:box-shadow .2s ease;
 }
 .service-item:hover{
   transform:translateY(-3px);
-  box-shadow:0 18px 40px rgba(12,32,73,.16);
-  border-color:#cbd5e1;
+  box-shadow:0 18px 40px rgba(44,90,160,.16);
+  border-color:var(--brand-red);
 }
-.service-item:hover::after{ box-shadow:0 0 0 2px rgba(245,158,11,.35) inset }
-.service-item h3{ margin:2px 0 8px; font-size:1.15rem; color:#111827 }
+.service-item:hover::after{ box-shadow:0 0 0 2px rgba(229,62,62,.35) inset }
+.service-item h3{ margin:2px 0 8px; font-size:1.15rem; color:var(--brand-blue-900); font-weight: bold; }
+.service-item h3 a{ color:inherit; text-decoration:none; }
+.service-item h3 a:hover{ color:var(--brand-red); }
 .service-item p{ color:#1f2937; margin:0 }
 
 /* Small thumbnails (if used inside service cards) */
@@ -195,10 +231,10 @@ section h2{
 
 /* ---------- CTA ---------- */
 .cta{
-  background:linear-gradient(90deg, var(--brand-red), #9f1f1f);
+  background:linear-gradient(90deg, var(--brand-red), var(--brand-red-hover));
   color:#fff; text-align:center; padding:50px 0;
 }
-.cta h2{ color:#fff; margin-bottom:6px }
+.cta h2{ color:#fff; margin-bottom:6px; font-family: "Times New Roman", serif; font-weight: bold; }
 .cta p{ color:#fff; opacity:.96; margin:0 0 14px }
 
 /* ---------- Buttons ---------- */
@@ -207,12 +243,26 @@ section h2{
 form button[type="submit"]{
   display:inline-block; border:none; cursor:pointer; text-decoration:none;
   padding:14px 22px; border-radius:12px; font-weight:800; letter-spacing:.2px;
-  background:var(--accent); color:#111;
-  box-shadow:0 10px 24px rgba(0,0,0,.16);
-  transition:transform .08s ease, box-shadow .16s ease, opacity .18s ease;
+  background:var(--accent); color:#fff;
+  box-shadow:0 10px 24px rgba(229,62,62,.16);
+  transition:transform .08s ease, background .16s ease, box-shadow .18s ease;
+  font-family: inherit;
 }
-.button:hover{ opacity:.96; text-decoration:none }
+.button:hover, .button:focus{ 
+  background: var(--accent-hover); 
+  text-decoration:none; 
+  transform: translateY(-1px);
+  box-shadow:0 12px 30px rgba(229,62,62,.25);
+}
 .button:active{ transform:translateY(1px) }
+
+/* Make entire service items clickable */
+.service-item[onclick], .service-item.clickable {
+  cursor: pointer;
+}
+.service-item[onclick]:hover h3, .service-item.clickable:hover h3 {
+  color: var(--accent);
+}
 
 /* ---------- Forms ---------- */
 form{
@@ -221,10 +271,11 @@ form{
 }
 label{ font-weight:700; display:inline-block; margin-bottom:6px }
 input[type="text"], input[type="email"], input[type="tel"], input[type="search"],
-select, textarea{
+input[type="number"], select, textarea{
   width:100%; padding:12px 12px; border:1px solid var(--border); border-radius:12px;
   background:#fff; color:var(--ink); outline:none;
   transition:border-color .2s, box-shadow .15s, background .2s;
+  font-family: inherit;
 }
 input:focus, select:focus, textarea:focus{ border-color:var(--brand-blue); box-shadow:var(--ring) }
 textarea{ resize:vertical }
@@ -232,6 +283,13 @@ form .row{ display:grid; grid-template-columns:repeat(12,1fr); gap:14px }
 form .col-6{ grid-column:span 6 }
 form .col-12{ grid-column:span 12 }
 form .actions{ display:flex; justify-content:center; gap:10px; margin-top:10px }
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
 
 /* ---------- Blog List Thumbnails ---------- */
 .post-thumb{
@@ -245,10 +303,10 @@ form .actions{ display:flex; justify-content:center; gap:10px; margin-top:10px }
 
 /* ---------- Footer (3-column: logo • contact • map) ---------- */
 footer{
-  background:#111827; color:#fff; text-align:center; padding:24px 0; font-size:.96rem;
+  background:var(--brand-blue-900); color:#fff; text-align:center; padding:24px 0; font-size:.96rem;
 }
-footer a{ color:#eaf2ff; text-decoration:none }
-footer a:hover{ color:#fff; text-decoration:underline }
+footer a{ color:#eaf2ff; text-decoration:none; transition: color 0.2s ease; }
+footer a:hover{ color:var(--brand-red); text-decoration:underline }
 
 .footer-grid-3{
   display:grid;
@@ -327,7 +385,7 @@ header .header-contact a,
 footer a{ color:#fff }
 .hero a:not(.button):hover,
 .cta a:not(.button):hover,
-footer a:hover{ color:#fff; text-decoration:underline; opacity:.95 }
+footer a:hover{ color:var(--accent); text-decoration:underline; opacity:.95 }
 .hero h1, .hero h2, .cta h2{ color:#fff }
 .hero p, .cta p{ color:#fff }
 
@@ -343,11 +401,10 @@ footer, footer p, footer li, footer small{ color:#fff !important }
 /* 1) Header: space things better, keep tap targets comfy */
 @media (max-width: 900px){
   header .container{ gap:12px; }
-  /* Put address/phone on its own line under nav */
+  /* Put Get Free Estimate button on its own line under nav */
   .header-contact{
     order: 3;
     flex-basis: 100%;
-    font-size: 1rem;
     text-align: center;
   }
   /* Center the nav and make links easier to tap */
@@ -395,6 +452,8 @@ footer, footer p, footer li, footer small{ color:#fff !important }
 /* 5) Buttons: full-width on small screens for easy tapping */
 @media (max-width: 640px){
   .button{ width:100%; padding:16px 20px; }
+  /* Exception for header button */
+  .header-contact .button{ width: auto; }
 }
 
 /* 6) Blog cards: slightly taller thumbs on phones for clarity */
@@ -411,3 +470,100 @@ footer, footer p, footer li, footer small{ color:#fff !important }
 @media (max-width: 380px){
   body{ font-size: 17px; } /* bumps base size slightly */
 }
+
+/* ---------- Calculator Styles (from calc.html) ---------- */
+.calc-wrap { padding: 32px 0; }
+.calc-tabs {
+  display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+  margin: 0 auto 14px;
+}
+.calc-tab {
+  border:2px solid var(--border);
+  background:#fff;
+  color:var(--brand-blue);
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:transform .06s ease, background .15s ease, border-color .15s ease, opacity .12s ease;
+}
+.calc-tab:hover { opacity:.96; }
+.calc-tab[aria-selected="true"] {
+  background: var(--accent);
+  color:#fff;
+  border-color: transparent;
+}
+
+.calc-panel { max-width: 880px; margin: 0 auto; }
+.calc-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.calc-card h3 { margin: 0 0 8px; color: var(--brand-blue-900); }
+.calc-help { color: var(--muted); margin: 6px 0 14px; }
+.calc-row { display:grid; grid-template-columns: repeat(12,1fr); gap:12px; }
+.calc-col-6 { grid-column: span 6; }
+.calc-col-12 { grid-column: span 12; }
+.result {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  color: var(--brand-blue);
+}
+.fine-print { color: var(--muted); font-size: .92rem; margin-top: 10px; }
+
+[hidden] { display:none !important; }
+
+.basic-wrap { display:grid; gap:12px; }
+.basic-display {
+  width:100%;
+  padding:14px 12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  font-size:1.6rem;
+  text-align:right;
+  letter-spacing:.5px;
+}
+.keypad {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+}
+.keypad button {
+  padding:14px 0;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fff;
+  color:var(--ink);
+  font-weight:800;
+  font-size:1.05rem;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:transform .06s ease, opacity .12s ease;
+}
+.keypad button:active { transform: translateY(1px); }
+.keypad .op { background:var(--bg-alt); }
+.keypad .eq { background: var(--accent); color:#fff; }
+.keypad .wide { grid-column: span 2; }
+
+@media (max-width: 900px) {
+  .calc-col-6 { grid-column: span 12; }
+}
+/* Make the whole service card clickable without altering layout */
+.service-item { position: relative; }
+.service-item .stretched-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+.service-item h3 a, .service-item p a { position: relative; z-index: 3; }
