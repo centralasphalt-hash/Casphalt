@@ -5,6 +5,8 @@
 
 /* ---------- Theme ---------- */
 :root{
+  --font-display: 'Bank Gothic','Microgramma D Extended','Eurostile Extended','Square 721','Michroma','Aldrich',system-ui,sans-serif;
+  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   /* Brand colors to match new CAS logo */
   --brand-blue:#2c5aa0;        /* navy blue from logo background */
   --brand-blue-900:#1e3f73;    /* darker navy */
@@ -44,7 +46,7 @@ body{
   margin:0;
   color:var(--ink);
   background:var(--bg);
-  font:400 16px/1.65 "Georgia", "Times New Roman", serif; /* Changed to serif to match traditional logo style */
+  font:400 16px/1.65 var(--font-body); /* Changed to serif to match traditional logo style */
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 @media (min-width:1200px){ body{ font-size:17px } }
@@ -83,6 +85,10 @@ header h1{
   font-family: "Times New Roman", serif;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .04em;
 }
 
 /* Logo sizing */
@@ -111,6 +117,10 @@ nav ul{ display:flex; gap:20px; list-style:none; margin:0; padding:0 }
 nav a{
   color:#fff; font-weight:650; letter-spacing:.2px;
   padding:10px 10px; border-radius:10px; transition:background .2s, transform .08s;
+
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .06em;
 }
 nav a:hover{ background:rgba(255,255,255,.12); text-decoration:none }
 nav a[aria-current="page"]{ background:rgba(255,255,255,.18) }
@@ -137,6 +147,9 @@ nav a:active{ transform:translateY(1px) }
   background: var(--brand-red);
   padding: 4px 12px;
   border-radius: 20px;
+
+  font-family: var(--font-display);
+  letter-spacing: .14em;
 }
 .hero h1{
   margin:0 0 8px; line-height:1.12;
@@ -144,6 +157,10 @@ nav a:active{ transform:translateY(1px) }
   text-shadow:0 10px 34px rgba(0,0,0,.45);
   font-family: "Times New Roman", serif;
   font-weight: bold;
+
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .02em;
 }
 .hero p{ font-size:clamp(1rem, .6vw + .95rem, 1.15rem); color:#fff }
 
@@ -153,6 +170,10 @@ section h2{
   color:var(--brand-blue-900); margin:0 0 12px;
   font-family: "Times New Roman", serif;
   font-weight: bold;
+
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .04em;
 }
 
 /* ---------- About ---------- */
@@ -183,7 +204,11 @@ section h2{
   border-color:var(--brand-red);
 }
 .service-item:hover::after{ box-shadow:0 0 0 2px rgba(229,62,62,.35) inset }
-.service-item h3{ margin:2px 0 8px; font-size:1.15rem; color:var(--brand-blue-900); font-weight: bold; }
+.service-item h3{ margin:2px 0 8px; font-size:1.15rem; color:var(--brand-blue-900); font-weight: bold; 
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
 .service-item h3 a{ color:inherit; text-decoration:none; }
 .service-item h3 a:hover{ color:var(--brand-red); }
 .service-item p{ color:#1f2937; margin:0 }
@@ -247,6 +272,10 @@ form button[type="submit"]{
   box-shadow:0 10px 24px rgba(229,62,62,.16);
   transition:transform .08s ease, background .16s ease, box-shadow .18s ease;
   font-family: inherit;
+
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .06em;
 }
 .button:hover, .button:focus{ 
   background: var(--accent-hover); 
@@ -409,13 +438,21 @@ footer, footer p, footer li, footer small{ color:#fff !important }
   }
   /* Center the nav and make links easier to tap */
   nav ul{ gap:12px; flex-wrap:wrap; justify-content:center; }
-  nav a{ padding:12px 10px; line-height:1.2; }
+  nav a{ padding:12px 10px; line-height:1.2; 
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
 }
 
 /* 2) Hero: a bit shorter and readable on small screens */
 @media (max-width: 900px){
   .hero{ min-height:46svh; padding:40px 0; }
-  .hero h1{ font-size: clamp(1.6rem, 4.5vw + 1rem, 2.2rem); }
+  .hero h1{ font-size: clamp(1.6rem, 4.5vw + 1rem, 2.2rem); 
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
   .hero p{ font-size: 1rem; }
 }
 
