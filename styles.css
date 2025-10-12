@@ -604,3 +604,31 @@ footer, footer p, footer li, footer small{ color:#fff !important }
   overflow: hidden;
 }
 .service-item h3 a, .service-item p a { position: relative; z-index: 3; }
+/* --- Mobile Header Size Fix --- */
+@media (max-width: 768px) {
+  header {
+    padding: 4px 0; /* reduce vertical padding */
+  }
+
+  header .container {
+    gap: 6px; /* less space between elements */
+  }
+
+  header img {
+    height: 40px; /* smaller logo on mobile */
+  }
+
+  header h1 {
+    font-size: 1.1rem; /* reduce text size */
+  }
+
+  header nav ul {
+    flex-wrap: wrap; /* prevent overflow */
+    justify-content: center;
+  }
+
+  header nav ul li a {
+    padding: 4px 6px;
+    font-size: 0.9rem;
+  }
+}
