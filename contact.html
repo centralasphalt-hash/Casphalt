@@ -11,37 +11,44 @@
 <body>
 
   <!-- Header -->
-<header>
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-    <!-- Logo + Company -->
-    <div style="display:flex;align-items:center;gap:12px;">
-      <a href="index.html" title="Return to Home">
-      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="44" height="44" style="border-radius:8px;object-fit:contain;" />
-      </a>
-      <h1>Central Asphalt Sealcoating</h1>
-    </div>
+  <header>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <!-- Logo + Company -->
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="index.html" title="Return to Home">
+          <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="44" height="44" style="border-radius:8px;object-fit:contain;" />
+        </a>
+        <h1>Central Asphalt Sealcoating</h1>
+      </div>
 
-    <!-- Get Free Estimate Button -->
-    <div class="header-contact" style="text-align:center;">
-      <a class="button" href="contact.html" style="display:inline-block;padding:12px 20px;font-size:0.95rem;font-weight:700;">Get a Free Estimate</a>
-    </div>
+      <!-- Get Free Estimate Button -->
+      <div class="header-contact" style="text-align:center;">
+        <a class="button" href="contact.html" style="display:inline-block;padding:12px 20px;font-size:0.95rem;font-weight:700;">Get a Free Estimate</a>
+      </div>
 
-    <!-- Navigation -->
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="index.html#home">Home</a></li> 
-        <li><a href="services.html">Services</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+      <!-- Navigation -->
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html#home">Home</a></li> 
+          <li><a href="services.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-M4BFTB2F');</script>
+<!-- End Google Tag Manager -->
+  </header>
 
   <!-- Hero -->
-<section id="home" class="hero" role="banner" aria-label="Hero"
-         style="--hero-image: url('assets/hero-lot.png');">
+  <section id="home" class="hero" role="banner" aria-label="Hero"
+           style="--hero-image: url('assets/hero-lot.png');">
     <div class="container">
       <p class="eyebrow">Contact</p>
       <h1>Request a Free Estimate</h1>
@@ -69,13 +76,13 @@
           <h3>Office</h3>
           <p>
             <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
-              target="_blank" rel="noopener">
+               target="_blank" rel="noopener">
               203 E Palmetto Ave<br>Longwood, FL 32750
             </a>
           </p>
           <p style="margin-top:10px;">
             <a class="button" href="https://www.google.com/maps/dir/?api=1&destination=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
-              target="_blank" rel="noopener">Get Directions</a>
+               target="_blank" rel="noopener">Get Directions</a>
           </p>
           <p style="margin-top:8px;color:var(--muted);">Serving All Central Florida</p>
         </article>
@@ -161,46 +168,57 @@
       </form>
     </div>
   </section>
-  
-  <!-- Footer -->
-<footer role="contentinfo">
-  <div class="container footer-grid-3">
-    <!-- Left: logo only -->
-    <a class="footer-logo" href="index.html#home" aria-label="Go to Home">
-      <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="64" height="64" />
-    </a>
 
-    <!-- Middle: contact info -->
-    <div class="footer-contact-wrap">
-      <ul class="footer-contact">
-        <li>
-          <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
-             target="_blank" rel="noopener">
-            203 E Palmetto Ave, Longwood, FL 32750
-          </a>
-        </li>
-        <li><a href="tel:+14073320050">(407) 332-0050</a></li>
-        <li><a href="mailto:CentralAsphalt@gmail.com">CentralAsphalt@gmail.com</a></li>
-      </ul>
-
-      <p class="footer-copy">&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
-      <p class="footer-lic">Licensed &amp; Insured</p>
-    </div>
-
-    <!-- Right: simple map -->
-    <div class="footer-right">
-      <div class="map-embed">
-        <iframe
-          title="Central Asphalt Sealcoating on Google Maps"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-          src="https://www.google.com/maps?q=203+E+Palmetto+Ave,+Longwood,+FL+32750&output=embed">
-        </iframe>
-      </div>
+  <!-- Thank You Popup -->
+  <div id="thankYouModal" aria-hidden="true">
+    <div class="thankyou-card">
+      <h3 id="thankYouTitle">Thank you!</h3>
+      <p>We’ve received your message and will be in touch shortly.</p>
+      <button type="button" class="button" id="closeThankYouBtn">
+        Close
+      </button>
     </div>
   </div>
-</footer>
+  
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container footer-grid-3">
+      <!-- Left: logo only -->
+      <a class="footer-logo" href="index.html#home" aria-label="Go to Home">
+        <img src="assets/logo.png" alt="Central Asphalt Sealcoating logo" width="64" height="64" />
+      </a>
+
+      <!-- Middle: contact info -->
+      <div class="footer-contact-wrap">
+        <ul class="footer-contact">
+          <li>
+            <a href="https://www.google.com/maps/search/?api=1&query=203+E+Palmetto+Ave%2C+Longwood%2C+FL+32750"
+               target="_blank" rel="noopener">
+              203 E Palmetto Ave, Longwood, FL 32750
+            </a>
+          </li>
+          <li><a href="tel:+14073320050">(407) 332-0050</a></li>
+          <li><a href="mailto:CentralAsphalt@gmail.com">CentralAsphalt@gmail.com</a></li>
+        </ul>
+
+        <p class="footer-copy">&copy; <span id="year"></span> Central Asphalt Sealcoating. All rights reserved.</p>
+        <p class="footer-lic">Licensed &amp; Insured</p>
+      </div>
+
+      <!-- Right: simple map -->
+      <div class="footer-right">
+        <div class="map-embed">
+          <iframe
+            title="Central Asphalt Sealcoating on Google Maps"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            src="https://www.google.com/maps?q=203+E+Palmetto+Ave,+Longwood,+FL+32750&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Tiny inline script for year -->
   <script>
@@ -227,14 +245,29 @@
     })();
   </script>
 
-  <!-- Formspree AJAX handler (matches IDs above) -->
+  <!-- Formspree AJAX handler + Thank You Modal -->
   <script>
   (function () {
-    var form     = document.getElementById('contactForm');
-    var statusEl = document.getElementById('formStatus');
-    var sendBtn  = document.getElementById('sendBtn');
+    var form        = document.getElementById('contactForm');
+    var statusEl    = document.getElementById('formStatus');
+    var sendBtn     = document.getElementById('sendBtn');
+    var thankModal  = document.getElementById('thankYouModal');
+    var closeThanks = document.getElementById('closeThankYouBtn');
 
     if (!form) return;
+
+    // Wire up close button + click outside to close
+    if (thankModal && closeThanks) {
+      closeThanks.addEventListener('click', function () {
+        thankModal.setAttribute('aria-hidden', 'true');
+      });
+
+      thankModal.addEventListener('click', function (e) {
+        if (e.target === thankModal) {
+          thankModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -264,6 +297,11 @@
           form.reset();
           statusEl.style.color = '#16a34a'; // green
           statusEl.textContent = 'Thanks! Your message has been sent.';
+
+          // Show thank-you popup
+          if (thankModal) {
+            thankModal.setAttribute('aria-hidden', 'false');
+          }
         } else if (data && data.errors) {
           statusEl.style.color = '#b91c1c';
           statusEl.innerHTML = 'Please fix the following: ' +
@@ -281,5 +319,9 @@
     });
   })();
   </script>
-
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4BFTB2F"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 </body>
+</html>
